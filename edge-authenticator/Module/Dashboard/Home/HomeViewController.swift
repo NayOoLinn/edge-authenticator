@@ -79,8 +79,15 @@ class HomeViewController: BaseViewController, ViewController {
 
         let input = HomeViewModel.Input(
             onViewAppear: rx.viewWillAppear.take(1).mapToVoid(),
-            generateNewCodes: Observable.merge(generateNewCodes, rx.willEnterForeground),
-            pauseTimer: rx.didEnterBackground
+            generateNewCodes: Observable.merge(
+                generateNewCodes,
+                rx.willEnterForeground,
+                rx.viewWillAppear.skip(1).mapToVoid()
+            ),
+            pauseTimer: Observable.merge(
+                rx.viewWillDisappear.mapToVoid(),
+                rx.didEnterBackground
+            )
         )
 
         let output = viewModel.transform(input: input)

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Config
 extension AppDelegate {
     func configureAppStartService() {
+        RealmManager.configure()
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.enableAutoToolbar = true

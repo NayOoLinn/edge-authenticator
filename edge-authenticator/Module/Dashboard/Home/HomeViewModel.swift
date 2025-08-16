@@ -29,7 +29,7 @@ class HomeViewModel: BaseViewModel, ViewModel {
     
     private var pauseTimer: Bool = false
     private var needNewCodes: Bool = true
-    private var codes: [String] = []
+    private var codes: [AuthCodeData] = []
 
     func transform(input: Input) -> Output {
 
@@ -44,7 +44,10 @@ class HomeViewModel: BaseViewModel, ViewModel {
             .compactMap(secondsNow)
             .share()
         
-        let startTimer = input.generateNewCodes
+        let stopTimer = input.pauseTimer
+            .onNext { self.pauseTimer = true }
+        
+        let startTimer =  input.generateNewCodes
             .filter { self.pauseTimer }
             .onNext {
                 self.pauseTimer = false
@@ -52,7 +55,7 @@ class HomeViewModel: BaseViewModel, ViewModel {
             }
             .share()
         
-        let seconds = Observable.merge(input.onViewAppear, startTimer)
+        let seconds = Observable.merge(input.onViewAppear, startTimer, stopTimer)
             .flatMapLatest {
                 timer
                     .take(while: {_ in !self.pauseTimer})
@@ -67,13 +70,12 @@ class HomeViewModel: BaseViewModel, ViewModel {
             .mapToVoid()
             .share()
         
-        let timeUp = seconds
+        let codeExpired = seconds
             .filter { $0 >= Int(self.maxProgress) }
             .mapToVoid()
-            .share()
-        
-        let codeExpired = Observable.merge(timeUp, input.pauseTimer)
             .onNext { self.pauseTimer = true }
+            .share()
+            
         
         return Output(
             fullLoading: activityIndicatorFull.asDriver(),
@@ -122,23 +124,25 @@ extension HomeViewModel {
 private extension HomeViewModel {
     func mapToAuthCodeTableCellDisplayModel(progress: CGFloat, color: UIColor) -> [AuthCodeTableCell.DisplayModel] {
     
-        return codes.enumerated().map { index, value in
+        return codes.map {
             AuthCodeTableCell.DisplayModel(
-                title: "Auth Code: \(index + 1)",
-                code: value,
+                title: $0.name,
+                code: $0.code,
                 progress: progress,
                 color: color
             )
         }
     }
     
-    func generateCodes() -> [String] {
+    func generateCodes() -> [AuthCodeData] {
         if !needNewCodes { return codes }
-        print("new code generated")
         needNewCodes = false
-        return Array(1...7).map { _ in
+        
+        return RealmManager.shared.getAll(AuthCodeData.self).map {
+            let authCode = $0
             let number = String(format: "%06d", Int.random(in: 0...999_999))
-            return number.inserting(separator: " ", every: 3)
+            authCode.code = number.inserting(separator: " ", every: 3)
+            return authCode
         }
     }
 }

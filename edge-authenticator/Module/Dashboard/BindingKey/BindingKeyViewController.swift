@@ -21,6 +21,7 @@ class BindingKeyViewController: BaseViewController, ViewController {
 
     override func bindActions() {
         registerButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.saveAuthCode()
             self?.viewModel.routeToOTPVerify.onNext(())
         }).disposed(by: disposeBag)
     }
@@ -43,6 +44,13 @@ class BindingKeyViewController: BaseViewController, ViewController {
                 message: $0.localizedDescription
             )
         }).disposed(by: disposeBag)
+    }
+    
+    private func saveAuthCode() {
+        let authCode = AuthCodeData()
+        authCode.name = nameTextField.text ?? ""
+        authCode.key = nameTextField.text ?? ""
+        RealmManager.shared.add(authCode)
     }
 }
 // MARK: - Update UI

@@ -136,6 +136,10 @@ public class TextField: UIView {
         }
     }
 
+    public var text: String? {
+        textField.text
+    }
+    
     fileprivate let onTextChanged = BehaviorSubject(value: "")
     fileprivate let onTapRightButton = PublishSubject<Void>()
     fileprivate lazy var tapGesture = UITapGestureRecognizer()

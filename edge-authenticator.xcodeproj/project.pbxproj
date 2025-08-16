@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF404A4D2E501AB500DD0D81 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF404A4C2E501AB500DD0D81 /* IQKeyboardManagerSwift */; };
+		DF404D6C2E50785E00DD0D81 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF404D6B2E50785E00DD0D81 /* RealmSwift */; };
 		DF4E49532E4B1FEF00278511 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49522E4B1FEF00278511 /* RxCocoa */; };
 		DF4E49552E4B1FEF00278511 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49542E4B1FEF00278511 /* RxRelay */; };
 		DF4E49572E4B1FEF00278511 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49562E4B1FEF00278511 /* RxSwift */; };
@@ -46,6 +47,7 @@
 				DF4E49572E4B1FEF00278511 /* RxSwift in Frameworks */,
 				DF404A4D2E501AB500DD0D81 /* IQKeyboardManagerSwift in Frameworks */,
 				DF4E49552E4B1FEF00278511 /* RxRelay in Frameworks */,
+				DF404D6C2E50785E00DD0D81 /* RealmSwift in Frameworks */,
 				DF4E49532E4B1FEF00278511 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +95,7 @@
 				DF4E49542E4B1FEF00278511 /* RxRelay */,
 				DF4E49562E4B1FEF00278511 /* RxSwift */,
 				DF404A4C2E501AB500DD0D81 /* IQKeyboardManagerSwift */,
+				DF404D6B2E50785E00DD0D81 /* RealmSwift */,
 			);
 			productName = "edge-authenticator";
 			productReference = DF4E49292E4B1C7A00278511 /* edge-authenticator.app */;
@@ -125,6 +128,7 @@
 			packageReferences = (
 				DF4E49512E4B1FEF00278511 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DF404A4B2E501AB500DD0D81 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				DF404D6A2E50785E00DD0D81 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF4E492A2E4B1C7A00278511 /* Products */;
@@ -376,6 +380,14 @@
 				minimumVersion = 6.5.6;
 			};
 		};
+		DF404D6A2E50785E00DD0D81 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.3;
+			};
+		};
 		DF4E49512E4B1FEF00278511 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -391,6 +403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF404A4B2E501AB500DD0D81 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		DF404D6B2E50785E00DD0D81 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF404D6A2E50785E00DD0D81 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		DF4E49522E4B1FEF00278511 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
