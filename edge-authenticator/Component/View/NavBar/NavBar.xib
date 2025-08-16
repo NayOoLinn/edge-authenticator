@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavBar" customModule="edge_authenticator" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="Rq2-wL-FlK" id="ryA-P0-JhK"/>
+                <outlet property="lblNavTitle" destination="AIr-BF-g5j" id="NDe-BT-eQC"/>
+                <outlet property="rightButton" destination="TFp-NP-WW5" id="wnz-4F-JUt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="206"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wee-8p-kdf">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="172"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="1BG-bG-Vku">
+                            <rect key="frame" x="12" y="118" width="369" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rq2-wL-FlK">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="swS-Vc-0n1"/>
+                                    </constraints>
+                                    <color key="tintColor" name="txtTitle"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icon-chevron-left"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIr-BF-g5j">
+                                    <rect key="frame" x="54" y="0.0" width="261" height="40"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                    <color key="textColor" name="txtTitle"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFp-NP-WW5">
+                                    <rect key="frame" x="329" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="NzM-DE-Hn5"/>
+                                    </constraints>
+                                    <color key="tintColor" name="txtTitle"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="fE1-WL-EQ9"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="LPW-v2-udG"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="1BG-bG-Vku" firstAttribute="leading" secondItem="Wee-8p-kdf" secondAttribute="leading" constant="12" id="7BF-hx-dgb"/>
+                        <constraint firstAttribute="trailing" secondItem="1BG-bG-Vku" secondAttribute="trailing" constant="12" id="Coh-Ia-c6e"/>
+                        <constraint firstItem="1BG-bG-Vku" firstAttribute="top" secondItem="LPW-v2-udG" secondAttribute="top" id="YSr-L3-eHD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Wee-8p-kdf" secondAttribute="trailing" id="8qG-mF-B6T"/>
+                <constraint firstItem="Wee-8p-kdf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IJx-e4-h2o"/>
+                <constraint firstItem="Wee-8p-kdf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="U3c-uq-zut"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Wee-8p-kdf" secondAttribute="bottom" id="soC-cY-0dA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="61.832061068702288" y="54.225352112676056"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-chevron-left" width="24" height="24"/>
+        <namedColor name="txtTitle">
+            <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

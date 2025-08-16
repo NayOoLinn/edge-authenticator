@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAccountOptionView" customModule="edge_authenticator" customModuleProvider="target">
+            <connections>
+                <outlet property="bindingKeyButton" destination="2s9-1N-ISO" id="Gjd-hN-5fB"/>
+                <outlet property="qrCodeButton" destination="tRL-eV-KG4" id="4kg-y1-k3R"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9iy-rd-3iO">
+                    <rect key="frame" x="20" y="16" width="240" height="108"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRL-eV-KG4">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="52"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                            <color key="tintColor" name="txtTitle"/>
+                            <inset key="imageEdgeInsets" minX="100" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Scan QR Code" image="icon-qr-code">
+                                <color key="titleColor" name="txtTitle"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s9-1N-ISO">
+                            <rect key="frame" x="0.0" y="56" width="240" height="52"/>
+                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                            <color key="tintColor" name="txtTitle"/>
+                            <inset key="imageEdgeInsets" minX="76" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Enter Binding Key" image="icon-link">
+                                <color key="titleColor" name="txtTitle"/>
+                            </state>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="9iy-rd-3iO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="KpD-dK-WWh"/>
+                <constraint firstAttribute="bottom" secondItem="9iy-rd-3iO" secondAttribute="bottom" constant="16" id="OvE-yG-3Au"/>
+                <constraint firstItem="9iy-rd-3iO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="UI2-jH-kKF"/>
+                <constraint firstAttribute="trailing" secondItem="9iy-rd-3iO" secondAttribute="trailing" constant="20" id="fjj-pZ-TeA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="50" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-link" width="24" height="24"/>
+        <image name="icon-qr-code" width="24" height="24"/>
+        <namedColor name="txtTitle">
+            <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

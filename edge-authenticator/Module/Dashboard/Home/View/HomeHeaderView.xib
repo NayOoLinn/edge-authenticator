@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeHeaderView" customModule="edge_authenticator" customModuleProvider="target">
+            <connections>
+                <outlet property="menuButton" destination="iMi-m4-Mkf" id="kGx-No-JjX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="158"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-88-RcY">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="158"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zzT-HW-S2D">
+                            <rect key="frame" x="16" y="118" width="361" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMi-m4-Mkf">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="UH0-Xy-CJc"/>
+                                    </constraints>
+                                    <color key="tintColor" name="txtTitle"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icon-menu"/>
+                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bmb-es-FFe">
+                                    <rect key="frame" x="48" y="0.0" width="313" height="40"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="EDGE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVI-C7-YwE">
+                                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="40"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
+                                            <color key="textColor" name="primaryBold"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Authenticator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="god-ub-e1h">
+                                            <rect key="frame" x="45.333333333333343" y="0.0" width="267.66666666666663" height="40"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" name="txtParagraph"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ig7-ym-ENc"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="MaQ-5b-fWo"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="zzT-HW-S2D" secondAttribute="trailing" constant="16" id="18S-wq-peM"/>
+                        <constraint firstItem="zzT-HW-S2D" firstAttribute="top" secondItem="MaQ-5b-fWo" secondAttribute="top" id="Y9E-mG-Z7u"/>
+                        <constraint firstItem="zzT-HW-S2D" firstAttribute="leading" secondItem="yvQ-88-RcY" secondAttribute="leading" constant="16" id="q7J-NA-f5W"/>
+                        <constraint firstAttribute="bottom" secondItem="zzT-HW-S2D" secondAttribute="bottom" id="uFn-CO-Szn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="yvQ-88-RcY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="14U-0D-r4C"/>
+                <constraint firstItem="yvQ-88-RcY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1Uj-GF-Scd"/>
+                <constraint firstAttribute="bottom" secondItem="yvQ-88-RcY" secondAttribute="bottom" id="B18-5y-52f"/>
+                <constraint firstItem="yvQ-88-RcY" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="TmQ-6J-xP9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="49.618320610687022" y="52.816901408450704"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon-menu" width="24" height="24"/>
+        <namedColor name="primaryBold">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="txtParagraph">
+            <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="txtTitle">
+            <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
