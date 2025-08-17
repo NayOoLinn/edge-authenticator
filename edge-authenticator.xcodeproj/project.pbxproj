@@ -12,7 +12,25 @@
 		DF4E49532E4B1FEF00278511 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49522E4B1FEF00278511 /* RxCocoa */; };
 		DF4E49552E4B1FEF00278511 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49542E4B1FEF00278511 /* RxRelay */; };
 		DF4E49572E4B1FEF00278511 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF4E49562E4B1FEF00278511 /* RxSwift */; };
+		DF71E4932E50C0060028FC61 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = DF404D6B2E50785E00DD0D81 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DF71E5622E50DE650028FC61 /* ESPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = DF71E5612E50DE650028FC61 /* ESPullToRefresh */; };
+		DF71E5652E50E01E0028FC61 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = DF71E5642E50E01E0028FC61 /* NVActivityIndicatorView */; };
+		DF71E5672E50E01E0028FC61 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = DF71E5662E50E01E0028FC61 /* NVActivityIndicatorViewExtended */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DF71E4942E50C0060028FC61 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DF71E4932E50C0060028FC61 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DF4E49292E4B1C7A00278511 /* edge-authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "edge-authenticator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,9 +63,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF4E49572E4B1FEF00278511 /* RxSwift in Frameworks */,
+				DF71E5672E50E01E0028FC61 /* NVActivityIndicatorViewExtended in Frameworks */,
 				DF404A4D2E501AB500DD0D81 /* IQKeyboardManagerSwift in Frameworks */,
+				DF71E5652E50E01E0028FC61 /* NVActivityIndicatorView in Frameworks */,
 				DF4E49552E4B1FEF00278511 /* RxRelay in Frameworks */,
 				DF404D6C2E50785E00DD0D81 /* RealmSwift in Frameworks */,
+				DF71E5622E50DE650028FC61 /* ESPullToRefresh in Frameworks */,
 				DF4E49532E4B1FEF00278511 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +102,7 @@
 				DF4E49252E4B1C7A00278511 /* Sources */,
 				DF4E49262E4B1C7A00278511 /* Frameworks */,
 				DF4E49272E4B1C7A00278511 /* Resources */,
+				DF71E4942E50C0060028FC61 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +118,9 @@
 				DF4E49562E4B1FEF00278511 /* RxSwift */,
 				DF404A4C2E501AB500DD0D81 /* IQKeyboardManagerSwift */,
 				DF404D6B2E50785E00DD0D81 /* RealmSwift */,
+				DF71E5612E50DE650028FC61 /* ESPullToRefresh */,
+				DF71E5642E50E01E0028FC61 /* NVActivityIndicatorView */,
+				DF71E5662E50E01E0028FC61 /* NVActivityIndicatorViewExtended */,
 			);
 			productName = "edge-authenticator";
 			productReference = DF4E49292E4B1C7A00278511 /* edge-authenticator.app */;
@@ -129,6 +154,8 @@
 				DF4E49512E4B1FEF00278511 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DF404A4B2E501AB500DD0D81 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DF404D6A2E50785E00DD0D81 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DF71E5602E50DE650028FC61 /* XCRemoteSwiftPackageReference "pull-to-refresh" */,
+				DF71E5632E50E01E0028FC61 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DF4E492A2E4B1C7A00278511 /* Products */;
@@ -166,24 +193,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2YU433L6BL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2YU433L6BL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "edge-authenticator/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable camera in Settings to scan QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to scan QR codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.curiousmind.edge-authenticator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linn.edge-authenticator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Edge Authenticator Development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -199,24 +233,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2YU433L6BL;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "edge-authenticator/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable camera in Settings to scan QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library to scan QR codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.curiousmind.edge-authenticator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linn.edge-authenticator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -396,6 +434,22 @@
 				minimumVersion = 6.9.0;
 			};
 		};
+		DF71E5602E50DE650028FC61 /* XCRemoteSwiftPackageReference "pull-to-refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eggswift/pull-to-refresh";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.3;
+			};
+		};
+		DF71E5632E50E01E0028FC61 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -423,6 +477,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF4E49512E4B1FEF00278511 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		DF71E5612E50DE650028FC61 /* ESPullToRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF71E5602E50DE650028FC61 /* XCRemoteSwiftPackageReference "pull-to-refresh" */;
+			productName = ESPullToRefresh;
+		};
+		DF71E5642E50E01E0028FC61 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF71E5632E50E01E0028FC61 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		DF71E5662E50E01E0028FC61 /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF71E5632E50E01E0028FC61 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

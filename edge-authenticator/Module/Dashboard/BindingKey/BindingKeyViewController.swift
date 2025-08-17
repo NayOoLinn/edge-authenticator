@@ -44,6 +44,10 @@ class BindingKeyViewController: BaseViewController, ViewController {
                 message: $0.localizedDescription
             )
         }).disposed(by: disposeBag)
+        
+        output.updateUI.drive(onNext: { [weak self] in
+            self?.updateUI(key: $0)
+        }).disposed(by: disposeBag)
     }
     
     private func saveAuthCode() {
@@ -56,7 +60,12 @@ class BindingKeyViewController: BaseViewController, ViewController {
 // MARK: - Update UI
 extension BindingKeyViewController {
 
-    func updateUI() {
+    func updateUI(key: String?) {
+        let keyIsEmpty = (key ?? "").isEmpty
+        keyTextField.text = key
         
+        keyTextField.updateBackgroundColor(keyIsEmpty ? Color.silver : Color.txtDim)
+        keyTextField.isUserInteractionEnabled = keyIsEmpty
+       
     }
 }

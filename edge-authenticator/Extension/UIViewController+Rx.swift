@@ -5,8 +5,9 @@ import UIKit
 // MARK: - View LifeCycle
 extension Reactive where Base: UIViewController {
 
-    var viewDidLoad: ControlEvent<Bool> {
-        let source = self.methodInvoked(#selector(Base.viewDidLoad)).map { $0.first as? Bool ?? false }
+    var viewDidLoad: ControlEvent<Void> {
+        let source = methodInvoked(#selector(Base.viewDidLoad))
+            .map { _ in () }
         return ControlEvent(events: source)
     }
 
@@ -15,13 +16,15 @@ extension Reactive where Base: UIViewController {
         return ControlEvent(events: source)
     }
 
-    var viewWillLayoutSubviews: ControlEvent<Bool> {
-        let source = self.methodInvoked(#selector(Base.viewWillLayoutSubviews)).map { $0.first as? Bool ?? false }
+    var viewWillLayoutSubviews: ControlEvent<Void> {
+        let source = methodInvoked(#selector(Base.viewWillLayoutSubviews))
+            .map { _ in () }
         return ControlEvent(events: source)
     }
-
-    var viewDidLayoutSubviews: ControlEvent<Bool> {
-        let source = self.methodInvoked(#selector(Base.viewDidLayoutSubviews)).map { $0.first as? Bool ?? false }
+    
+    var viewDidLayoutSubviews: ControlEvent<Void> {
+        let source = methodInvoked(#selector(Base.viewDidLayoutSubviews))
+            .map { _ in () }
         return ControlEvent(events: source)
     }
 

@@ -20,7 +20,9 @@ class AlertDialog: BaseDialog {
         dialog.titleText = title
         dialog.message = message
         dialog.positiveTitle = positiveTitle
+        dialog.positiveAction = positiveAction
         dialog.negativeTitle = negativeTitle
+        dialog.negativeAction = negativeAction
         vc.present(dialog, animated: true)
     }
     
@@ -38,7 +40,6 @@ class AlertDialog: BaseDialog {
     var negativeAction: (() -> Void)?
     
     let disposeBag = DisposeBag()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -124,7 +124,7 @@ public class TextField: UIView {
         }
     }
 
-    @IBInspectable public var keyboardType: String = UIKeyboardType.default.rawString {
+    @IBInspectable public var keyboardType: String = UIKeyboardType.asciiCapable.rawString {
         didSet {
             setUpTextField(.text(.init(rawString: keyboardType)), isSecureEntry: isSecureEntry)
         }
@@ -137,7 +137,8 @@ public class TextField: UIView {
     }
 
     public var text: String? {
-        textField.text
+        get { textField.text }
+        set { textField.text = newValue }
     }
     
     fileprivate let onTextChanged = BehaviorSubject(value: "")
@@ -181,6 +182,7 @@ public class TextField: UIView {
         textField.font = font
         textField.textColor = textColor
         textField.textAlignment = textAlignment
+        setUpTextField(.text(.asciiCapable), isSecureEntry: false)
 
         bindAction()
     }

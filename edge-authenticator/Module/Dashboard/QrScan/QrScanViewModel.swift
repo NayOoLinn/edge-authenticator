@@ -14,8 +14,7 @@ class QrScanViewModel: BaseViewModel, ViewModel {
     }
     
     //Coordinator Output
-    let routeToDrawer = PublishSubject<Void>()
-
+    let routeToBindingKey = PublishSubject<String>()
 
     func transform(input: Input) -> Output {
 

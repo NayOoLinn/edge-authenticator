@@ -1,5 +1,5 @@
 {
-  "originHash" : "9d05f32f613a401967d4c19a311d3ea17a7771c45174b79753c22655ed19d2ee",
+  "originHash" : "2970be6372b63176b598a35b94a7d79fbb88ef6140a244c9ce2bf05c5370cad6",
   "pins" : [
     {
       "identity" : "iqkeyboardmanager",
@@ -8,6 +8,24 @@
       "state" : {
         "revision" : "c00b1ae9fa1ad8af4465bb6ca901f6943fc98eba",
         "version" : "6.5.16"
+      }
+    },
+    {
+      "identity" : "nvactivityindicatorview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ninjaprox/NVActivityIndicatorView",
+      "state" : {
+        "revision" : "121455c4e630fcb95aaefd7e4257b0c2e3cfe6d5",
+        "version" : "5.2.0"
+      }
+    },
+    {
+      "identity" : "pull-to-refresh",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eggswift/pull-to-refresh",
+      "state" : {
+        "revision" : "a858aaeb44abc6428af916e8496429d244fac053",
+        "version" : "2.9.3"
       }
     },
     {

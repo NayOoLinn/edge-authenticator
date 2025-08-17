@@ -41,6 +41,7 @@ class HomeViewModel: BaseViewModel, ViewModel {
             scheduler: MainScheduler.instance
         )
             .mapToVoid()
+            .filter { self.hasSavedAuthCode }
             .compactMap(secondsNow)
             .share()
         
@@ -87,6 +88,10 @@ class HomeViewModel: BaseViewModel, ViewModel {
 }
 // MARK: - Business Logic
 private extension HomeViewModel {
+    
+    var hasSavedAuthCode: Bool {
+        RealmManager.shared.getAll(AuthCodeData.self).count > 0
+    }
     
     func getUTCTime() -> String {
         let now = Date()

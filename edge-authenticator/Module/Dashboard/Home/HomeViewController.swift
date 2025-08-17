@@ -1,5 +1,6 @@
 import RxSwift
 import UIKit
+import ESPullToRefresh
 
 class HomeViewController: BaseViewController, ViewController {
 
@@ -51,6 +52,11 @@ class HomeViewController: BaseViewController, ViewController {
         authTableView.rowHeight = UITableView.automaticDimension
         authTableView.estimatedRowHeight = 60
         authTableView.separatorStyle = .none
+        
+        authTableView.alwaysBounceVertical = true
+        authTableView.es.addPullToRefresh(animator: ESRefreshHeaderAnimator()) { [weak self] in
+            self?.generateNewCodes.onNext(())
+        }
     }
 
     override func bindActions() {
@@ -115,6 +121,7 @@ class HomeViewController: BaseViewController, ViewController {
 extension HomeViewController {
 
     func updateUI() {
+        authTableView.es.stopPullToRefresh()
         authTableView.reloadData()
     }
     

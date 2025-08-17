@@ -4,10 +4,13 @@ import UIKit
 class OtpVerifyViewController: BaseViewController, ViewController {
     
     @IBOutlet weak var otpTextField: AEOTPTextField!
+    @IBOutlet weak var resendButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
     typealias ViewModelType = OtpVerifyViewModel
     var viewModel: ViewModelType!
+    
+    private let resendOtp = PublishSubject<Void>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +19,7 @@ class OtpVerifyViewController: BaseViewController, ViewController {
 
     override func setUpViews() {
         setUpOTPField()
+        enableResendButton(isEnable: false)
     }
 
     override func bindActions() {
@@ -30,6 +34,14 @@ class OtpVerifyViewController: BaseViewController, ViewController {
                 self?.otpTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)
+        
+        resendButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.enableResendButton(isEnable: false)
+                self?.resendOtp.onNext(())
+            })
+            .disposed(by: disposeBag)
+        
         
         submitButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -49,6 +61,7 @@ class OtpVerifyViewController: BaseViewController, ViewController {
 
         let input = OtpVerifyViewModel.Input(
             onViewAppear: rx.viewWillAppear.take(1).mapToVoid(),
+            resentOtp: resendOtp,
         )
 
         let output = viewModel.transform(input: input)
@@ -62,12 +75,24 @@ class OtpVerifyViewController: BaseViewController, ViewController {
                 message: $0.localizedDescription
             )
         }).disposed(by: disposeBag)
+        
+        output.updateResendCountDown.drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            switch $0 {
+            case .available:
+                self.enableResendButton(isEnable: true)
+                self.resendButton.setTitle("Resend OTP", for: .normal)
+            case .notAvailable(let remainingSeconds):
+                enableResendButton(isEnable: false)
+                self.resendButton.setTitle("Resend OTP in \(remainingSeconds)s", for: .normal)
+            }
+        }).disposed(by: disposeBag)
     }
 }
 // MARK: - Update UI
-extension OtpVerifyViewController {
+private extension OtpVerifyViewController {
 
-    private func setUpOTPField() {
+    func setUpOTPField() {
         otpTextField.otpFont = Font.semiBold.of(size: 16)
         otpTextField.otpTextColor = Color.txtTitle
 
@@ -86,5 +111,11 @@ extension OtpVerifyViewController {
     
     func updateUI() {
         
+    }
+    
+    func enableResendButton(isEnable: Bool) {
+        guard resendButton.isEnabled != isEnable else { return }
+        resendButton.backgroundColor = isEnable ? Color.primaryBold : Color.grayLight
+        resendButton.isEnabled = isEnable
     }
 }
