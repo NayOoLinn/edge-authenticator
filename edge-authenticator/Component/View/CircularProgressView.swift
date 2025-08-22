@@ -11,7 +11,7 @@ class CircularProgressView: UIView {
         }
     }
     
-    public var progressColor: UIColor = UIColor.white {
+    public var progressColor: UIColor = Color.surface {
         didSet {
             progressLayer.fillColor = progressColor.cgColor
         }

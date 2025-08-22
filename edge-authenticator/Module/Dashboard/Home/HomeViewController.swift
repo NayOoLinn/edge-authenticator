@@ -5,13 +5,12 @@ import ESPullToRefresh
 class HomeViewController: BaseViewController, ViewController {
 
     @IBOutlet weak var headerView: HomeHeaderView!
+    @IBOutlet weak var searchTextField: TextField!
     @IBOutlet weak var authTableView: UITableView!
     @IBOutlet weak var plusButton: UIButton!
     
     typealias ViewModelType = HomeViewModel
     var viewModel: ViewModelType!
-    
-    private let generateNewCodes = PublishSubject<Void>()
     
     private lazy var addAccountPopTip = {
         let popTip = PopTip()
@@ -27,10 +26,13 @@ class HomeViewController: BaseViewController, ViewController {
     
     private lazy var addAccountOptionView = {
         let optionView = AddAccountOptionView(
-            frame: CGRect(x: 0, y: 0, width: 280, height: 140)
+            frame: CGRect(x: 0, y: 0, width: 296, height: 140)
         )
         return optionView
     }()
+    
+    private let generateNewCodes = PublishSubject<Void>()
+    private let deleteCode = PublishSubject<Int>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,11 @@ class HomeViewController: BaseViewController, ViewController {
         
         authTableView.alwaysBounceVertical = true
         authTableView.es.addPullToRefresh(animator: ESRefreshHeaderAnimator()) { [weak self] in
-            self?.generateNewCodes.onNext(())
+            if self?.viewModel.data.isEmpty ?? true {
+                self?.authTableView.es.stopPullToRefresh()
+            } else {
+                self?.generateNewCodes.onNext(())
+            }
         }
     }
 
@@ -76,7 +82,7 @@ class HomeViewController: BaseViewController, ViewController {
         
         addAccountOptionView.rx.onTapBindingKey.subscribe(onNext: { [weak self] in
             self?.addAccountPopTip.hide()
-            self?.viewModel.routeToBindingKey.onNext(())
+            self?.viewModel.routeToBindingKey.onNext(nil)
         }).disposed(by: disposeBag)
     }
 
@@ -93,7 +99,9 @@ class HomeViewController: BaseViewController, ViewController {
             pauseTimer: Observable.merge(
                 rx.viewWillDisappear.mapToVoid(),
                 rx.didEnterBackground
-            )
+            ),
+            deleteCode: deleteCode,
+            search: searchTextField.rx.text.emptyOnNil
         )
 
         let output = viewModel.transform(input: input)
@@ -114,6 +122,14 @@ class HomeViewController: BaseViewController, ViewController {
         
         output.codeExpired.drive(onNext: { [weak self] in
             self?.generateNewCodes.onNext(())
+        }).disposed(by: disposeBag)
+        
+        output.codeDeleted.drive(onNext: { [weak self] in
+            self?.generateNewCodes.onNext(())
+        }).disposed(by: disposeBag)
+        
+        output.forceUpdateUI.drive(onNext: { [weak self] in
+            self?.updateUI()
         }).disposed(by: disposeBag)
     }
 }
@@ -147,10 +163,34 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.deque(AuthCodeTableCell.self)
-        cell.config(viewModel.data[indexPath.row])
+        cell.config(viewModel.data[indexPath.row], indexPath: indexPath)
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
+}
+
+extension HomeViewController: AuthCodeTableCellDelegate {
+    func authCodeTableCell(_ cell: AuthCodeTableCell, didTapEditButtonFor indexPath: IndexPath) {
+        guard let code = viewModel.getCodeData(at: indexPath.row) else { return }
+        viewModel.routeToBindingKey.onNext(code)
+    }
+    
+    func authCodeTableCell(_ cell: AuthCodeTableCell, didTapDeleteButtonFor indexPath: IndexPath) {
+        guard let code = viewModel.getCodeData(at: indexPath.row) else { return }
+        AlertDialog.show(
+            presentFrom: self,
+            title: "Delete Token: \(code.name)",
+            message: "Are you sure you want to delete this token? This action cannot be undone.",
+            positiveTitle: "Delete",
+            positiveAction: { [weak self] in
+                self?.deleteCode.onNext(indexPath.row)
+            },
+            negativeTitle: "Cancel"
+        )
+    }
+    
+    
 }

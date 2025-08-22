@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,47 +21,59 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+            <rect key="frame" x="0.0" y="0.0" width="349" height="317"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9iy-rd-3iO">
-                    <rect key="frame" x="20" y="16" width="240" height="108"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-bk-Cph">
+                    <rect key="frame" x="0.0" y="0.0" width="333" height="317"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRL-eV-KG4">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="52"/>
-                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
-                            <color key="tintColor" name="txtTitle"/>
-                            <inset key="imageEdgeInsets" minX="100" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Scan QR Code" image="icon-qr-code">
-                                <color key="titleColor" name="txtTitle"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s9-1N-ISO">
-                            <rect key="frame" x="0.0" y="56" width="240" height="52"/>
-                            <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
-                            <color key="tintColor" name="txtTitle"/>
-                            <inset key="imageEdgeInsets" minX="76" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Enter Binding Key" image="icon-link">
-                                <color key="titleColor" name="txtTitle"/>
-                            </state>
-                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9iy-rd-3iO">
+                            <rect key="frame" x="16" y="20" width="301" height="277"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRL-eV-KG4">
+                                    <rect key="frame" x="0.0" y="0.0" width="301" height="136.66666666666666"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                    <color key="tintColor" name="txtTitle"/>
+                                    <inset key="imageEdgeInsets" minX="100" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Scan QR Code" image="icon-qr-code">
+                                        <color key="titleColor" name="txtTitle"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2s9-1N-ISO">
+                                    <rect key="frame" x="0.0" y="140.66666666666663" width="301" height="136.33333333333337"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                    <color key="tintColor" name="txtTitle"/>
+                                    <inset key="imageEdgeInsets" minX="76" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Enter Binding Key" image="icon-link">
+                                        <color key="titleColor" name="txtTitle"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
-                </stackView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="9iy-rd-3iO" firstAttribute="leading" secondItem="Bed-bk-Cph" secondAttribute="leading" constant="16" id="EKu-h3-NF1"/>
+                        <constraint firstItem="9iy-rd-3iO" firstAttribute="top" secondItem="Bed-bk-Cph" secondAttribute="top" constant="20" id="Tdu-fc-zcQ"/>
+                        <constraint firstAttribute="bottom" secondItem="9iy-rd-3iO" secondAttribute="bottom" constant="20" id="b4e-mC-Los"/>
+                        <constraint firstAttribute="trailing" secondItem="9iy-rd-3iO" secondAttribute="trailing" constant="16" id="tfJ-HX-kSe"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="9iy-rd-3iO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="KpD-dK-WWh"/>
-                <constraint firstAttribute="bottom" secondItem="9iy-rd-3iO" secondAttribute="bottom" constant="16" id="OvE-yG-3Au"/>
-                <constraint firstItem="9iy-rd-3iO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="UI2-jH-kKF"/>
-                <constraint firstAttribute="trailing" secondItem="9iy-rd-3iO" secondAttribute="trailing" constant="20" id="fjj-pZ-TeA"/>
+                <constraint firstAttribute="bottom" secondItem="Bed-bk-Cph" secondAttribute="bottom" id="DjG-X4-uHE"/>
+                <constraint firstAttribute="trailing" secondItem="Bed-bk-Cph" secondAttribute="trailing" constant="16" id="Frp-FS-qeG"/>
+                <constraint firstItem="Bed-bk-Cph" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JQ6-0X-pp8"/>
+                <constraint firstItem="Bed-bk-Cph" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QrF-Dv-mnz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                    <real key="value" value="12"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="50" y="20"/>
+            <point key="canvasLocation" x="101.5267175572519" y="82.042253521126767"/>
         </view>
     </objects>
     <resources>
@@ -71,8 +82,5 @@
         <namedColor name="txtTitle">
             <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

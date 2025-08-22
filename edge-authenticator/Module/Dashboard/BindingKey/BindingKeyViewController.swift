@@ -5,7 +5,7 @@ class BindingKeyViewController: BaseViewController, ViewController {
     
     @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var keyTextField: TextField!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var registerButton: AppButton!
     
     typealias ViewModelType = BindingKeyViewModel
     var viewModel: ViewModelType!
@@ -16,13 +16,17 @@ class BindingKeyViewController: BaseViewController, ViewController {
     }
 
     override func setUpViews() {
-        
+        registerButton.isEnabled = false
     }
 
     override func bindActions() {
         registerButton.rx.tap.subscribe(onNext: { [weak self] in
-            self?.saveAuthCode()
-            self?.viewModel.routeToOTPVerify.onNext(())
+            guard let self = self else { return }
+            self.viewModel.saveAuthCode(
+                name: nameTextField.text ?? "",
+                key: keyTextField.text ?? ""
+            )
+            self.popToRoot()
         }).disposed(by: disposeBag)
     }
 
@@ -31,6 +35,8 @@ class BindingKeyViewController: BaseViewController, ViewController {
 
         let input = BindingKeyViewModel.Input(
             onViewAppear: rx.viewWillAppear.take(1).mapToVoid(),
+            onNameChanged: nameTextField.rx.text.emptyOnNil,
+            onKeyChanged: keyTextField.rx.text.emptyOnNil
         )
 
         let output = viewModel.transform(input: input)
@@ -46,23 +52,23 @@ class BindingKeyViewController: BaseViewController, ViewController {
         }).disposed(by: disposeBag)
         
         output.updateUI.drive(onNext: { [weak self] in
-            self?.updateUI(key: $0)
+            self?.updateUI($0)
         }).disposed(by: disposeBag)
-    }
-    
-    private func saveAuthCode() {
-        let authCode = AuthCodeData()
-        authCode.name = nameTextField.text ?? ""
-        authCode.key = nameTextField.text ?? ""
-        RealmManager.shared.add(authCode)
+        
+        output.enableButton.drive(onNext: { [weak self] in
+            self?.registerButton.isEnabled = $0
+        }).disposed(by: disposeBag)
     }
 }
 // MARK: - Update UI
 extension BindingKeyViewController {
 
-    func updateUI(key: String?) {
-        let keyIsEmpty = (key ?? "").isEmpty
-        keyTextField.text = key
+    func updateUI(_ data: AuthCodeData?) {
+        
+        nameTextField.text = data?.name ?? ""
+        
+        let keyIsEmpty = (data?.key ?? "").isEmpty
+        keyTextField.text = data?.key
         
         keyTextField.updateBackgroundColor(keyIsEmpty ? Color.silver : Color.txtDim)
         keyTextField.isUserInteractionEnabled = keyIsEmpty

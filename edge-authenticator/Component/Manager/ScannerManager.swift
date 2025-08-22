@@ -40,6 +40,9 @@ public class ScannerManager: NSObject {
         setUpFrames()
         startCaptureSession()
         startScanLineAnimation()
+        DispatchQueue.main.async(execute: {
+            self.setInterestRect()
+        })
     }
     
     public func resumeScanning() {
@@ -54,17 +57,18 @@ public class ScannerManager: NSObject {
         scanLine.layer.removeAllAnimations()
     }
     
+    public func setInterestRect() {
+        if let output = videoOutput {
+            let convertedRect = previewLayer.metadataOutputRectConverted(fromLayerRect: cutoutFrame)
+            output.rectOfInterest = convertedRect
+        }
+    }
+    
     private func startCaptureSession() {
         captureQueue.async { [weak self] in
             guard let self = self, !self.captureSession.isRunning else { return }
             self.captureSession.startRunning()
         }
-//        if let output = videoOutput {
-//            print(cutoutFrame)
-////            output.rectOfInterest = previewLayer.metadataOutputRectConverted(fromLayerRect: cutoutFrame)
-//            output.rectOfInterest = cutoutFrame
-//            print(output.rectOfInterest)
-//        }
     }
     private func stopCaptureSession() {
         captureQueue.async { [weak self] in
@@ -150,17 +154,10 @@ private extension ScannerManager {
         output.setMetadataObjectsDelegate(self, queue: .main)
         output.metadataObjectTypes = [.qr]
         videoOutput = output
-        
-//        view.layoutIfNeeded()
-//        if let connection = output.connections.first, connection.isVideoOrientationSupported {
-//            connection.videoOrientation = .portrait
-//        }
-//        output.rectOfInterest = normalizedRectOfInterest(for: cutoutFrame)
     }
     
     func configurePreview() {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.videoGravity = .resizeAspectFill
         cameraView.layer.addSublayer(previewLayer)
     }
     
@@ -168,13 +165,13 @@ private extension ScannerManager {
         maskView.backgroundColor = .clear
         maskView.isUserInteractionEnabled = false
         maskView.cutoutCornerRadius = 16
-        maskView.borderColor = Color.blueBold.withAlphaComponent(0.9)
+        maskView.borderColor = Color.primaryBold.withAlphaComponent(0.9)
         maskView.borderWidth = 2
         cameraView.addSubview(maskView)
     }
     
     func configureScanLine() {
-        scanLine.backgroundColor = Color.blueBold
+        scanLine.backgroundColor = Color.primaryBold
         scanLine.layer.cornerRadius = 1
         scanLine.isUserInteractionEnabled = false
         cameraView.addSubview(scanLine)
@@ -218,13 +215,6 @@ private extension ScannerManager {
         maskView.frame = cameraView.bounds
         maskView.cutoutRect = cutoutFrame
         layoutScanLine()
-        
-//        if let output = captureSession.outputs.compactMap({ $0 as? AVCaptureMetadataOutput }).first {
-//            let layerRect = previewLayer.bounds.intersection(cutoutFrame)
-//            let convertedRect = previewLayer.metadataOutputRectConverted(fromLayerRect: layerRect)
-//            output.rectOfInterest = convertedRect
-//        }
-//        previewLayer.connection?.videoOrientation = .portrait
     }
 }
 // MARK: - AVCaptureMetadataOutputObjectsDelegate

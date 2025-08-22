@@ -22,6 +22,7 @@ struct UserListEndpoint: Endpoint {
     typealias Response = [UserData]
 
     func call(parameters: Request, inTesting: Bool) -> Single<Response> {
-        inTesting ? mock(.userList) : Network.shared.request(self, parameters: parameters)
+//        inTesting ? mock(.userList) : Network.shared.request(self, parameters: parameters)
+        return .just([])
     }
 }

@@ -25,3 +25,9 @@ extension ObservableType {
         map { _ in }
     }
 }
+
+public extension ObservableType where Element == String? {
+    var emptyOnNil: Observable<String> {
+        return self.map { $0 ?? "" }
+    }
+}

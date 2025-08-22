@@ -3,6 +3,14 @@ import Security
 
 public enum KeychainKeys: String, KeychainKey {
     case realmEncryptKey = "REALM_ENCRYPT_KEY"
+    // Security Keys
+    case securityKeyVersion = "SECURITY_KEY_VERSION"
+    case baseUrl = "BASE_URL"
+    case securityKey = "SECURITY_KEY"
+    case clientId = "CLIENT_ID"
+    case clientSecret = "CLIENT_SECRET"
+    case publicKey = "PUBLIC_KEY"
+    
     public var key: String { rawValue }
 }
 
@@ -37,6 +45,24 @@ public struct KeychainData {
             realmEncryptKeyString = newValue.base64EncodedString()
         }
     }
+    
+    @KeychainContext(storageKey: KeychainKeys.baseUrl, defaultValue: nil)
+    public static var baseUrl: String?
+    
+    @KeychainContext(storageKey: KeychainKeys.securityKey, defaultValue: nil)
+    public static var securityKey: String?
+    
+    @KeychainContext(storageKey: KeychainKeys.clientId, defaultValue: nil)
+    public static var clientId: String?
+    
+    @KeychainContext(storageKey: KeychainKeys.clientSecret, defaultValue: nil)
+    public static var clientSecret: String?
+    
+    @KeychainContext(storageKey: KeychainKeys.publicKey, defaultValue: nil)
+    public static var publicKey: String?
+    
+    @KeychainContext(storageKey: KeychainKeys.securityKeyVersion, defaultValue: nil)
+    public static var securityKeyVersion: String?
 
     /// Clear all stored values (for example on logout/reset)
     public static func clearAll() {

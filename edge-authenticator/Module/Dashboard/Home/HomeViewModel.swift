@@ -9,6 +9,8 @@ class HomeViewModel: BaseViewModel, ViewModel {
         let onViewAppear: Observable<Void>
         let generateNewCodes: Observable<Void>
         let pauseTimer: Observable<Void>
+        let deleteCode: Observable<Int>
+        let search: Observable<String>
     }
 
     struct Output {
@@ -16,12 +18,14 @@ class HomeViewModel: BaseViewModel, ViewModel {
         let error: Driver<Error>
         let updateUI: Driver<Void>
         let codeExpired: Driver<Void>
+        let codeDeleted: Driver<Void>
+        let forceUpdateUI: Driver<Void>
     }
     
     //Coordinator Output
     let routeToDrawer = PublishSubject<Void>()
     let routeToQrScan = PublishSubject<Void>()
-    let routeToBindingKey = PublishSubject<Void>()
+    let routeToBindingKey = PublishSubject<AuthCodeData?>()
     
     var data: [AuthCodeTableCell.DisplayModel] = []
     private let maxProgress = 60 // max Seconds 1 minute
@@ -30,6 +34,10 @@ class HomeViewModel: BaseViewModel, ViewModel {
     private var pauseTimer: Bool = false
     private var needNewCodes: Bool = true
     private var codes: [AuthCodeData] = []
+    
+    private let forceUpdateUI = PublishSubject<Void>()
+    
+    private var searchKeyword: String = ""
 
     func transform(input: Input) -> Output {
 
@@ -55,6 +63,13 @@ class HomeViewModel: BaseViewModel, ViewModel {
                 self.needNewCodes = true
             }
             .share()
+    
+        let deleteCode = input.deleteCode
+            .onNext {
+                self.pauseTimer = true
+                self.deleteCode(at: $0)
+            }
+            .mapToVoid()
         
         let seconds = Observable.merge(input.onViewAppear, startTimer, stopTimer)
             .flatMapLatest {
@@ -63,8 +78,19 @@ class HomeViewModel: BaseViewModel, ViewModel {
             }
             .share()
         
-        let updateUI = seconds
-            .onNext { _ in self.codes = self.generateCodes() }
+        let updateSearchKeyword = input.search
+            .debounce(.milliseconds(600), scheduler: MainScheduler.instance)
+            .onNext {
+                self.searchKeyword = $0.trimmingCharacters(in: .whitespacesAndNewlines)
+                self.needNewCodes = true
+            }
+            .mapToVoid()
+            .withLatestFrom(seconds)
+        
+        let updateUI = Observable.merge(seconds, updateSearchKeyword)
+            .onNext { _ in
+                self.codes = self.generateCodes()
+            }
             .compactMap(self.calculateCurrentProgress)
             .map(self.mapToAuthCodeTableCellDisplayModel)
             .onNext { self.data = $0 }
@@ -76,24 +102,25 @@ class HomeViewModel: BaseViewModel, ViewModel {
             .mapToVoid()
             .onNext { self.pauseTimer = true }
             .share()
-            
         
         return Output(
             fullLoading: activityIndicatorFull.asDriver(),
             error: errorTracker.asDriver(),
             updateUI: updateUI.asDriverOnErrorNever(),
-            codeExpired: codeExpired.asDriverOnErrorNever()
+            codeExpired: codeExpired.asDriverOnErrorNever(),
+            codeDeleted: deleteCode.asDriverOnErrorNever(),
+            forceUpdateUI: forceUpdateUI.asDriverOnErrorNever()
         )
     }
 }
 // MARK: - Business Logic
-private extension HomeViewModel {
+extension HomeViewModel {
     
-    var hasSavedAuthCode: Bool {
+    private var hasSavedAuthCode: Bool {
         RealmManager.shared.getAll(AuthCodeData.self).count > 0
     }
     
-    func getUTCTime() -> String {
+    private func getUTCTime() -> String {
         let now = Date()
         
         let formatter = DateFormatter()
@@ -103,7 +130,7 @@ private extension HomeViewModel {
         return formatter.string(from: now)
     }
     
-    func secondsNow() -> Int? {
+    private func secondsNow() -> Int? {
         guard let timerZone = TimeZone(abbreviation: "UTC") else {
             return nil
         }
@@ -114,11 +141,27 @@ private extension HomeViewModel {
         return utcCalendar.component(.second, from: now) + 1
     }
     
-    func calculateCurrentProgress(seconds: Int) -> (progress: CGFloat, color: UIColor)? {
+    private func calculateCurrentProgress(seconds: Int) -> (progress: CGFloat, color: UIColor)? {
         return (
             progress: CGFloat(seconds) / CGFloat(maxProgress),
-            color: seconds >= warningAt ? Color.redBold : Color.blueBold
+            color: seconds >= warningAt ? Color.redBold : Color.txtColor
         )
+    }
+    
+    func getCodeData(at index: Int) -> AuthCodeData? {
+        guard index < codes.count else { return nil }
+        return codes[index]
+    }
+    
+    private func deleteCode(at index: Int) {
+        guard index < codes.count else { return }
+        if let record = RealmManager.shared.getByPrimaryKey(AuthCodeData.self, key: codes[index].id) {
+            RealmManager.shared.delete(record)
+            codes.remove(at: index)
+            data.remove(at: index)
+            forceUpdateUI.onNext(())
+        }
+        
     }
 }
 // MARK: - API calls
@@ -143,11 +186,16 @@ private extension HomeViewModel {
         if !needNewCodes { return codes }
         needNewCodes = false
         
-        return RealmManager.shared.getAll(AuthCodeData.self).map {
-            let authCode = $0
-            let number = String(format: "%06d", Int.random(in: 0...999_999))
-            authCode.code = number.inserting(separator: " ", every: 3)
-            return authCode
-        }
+        return RealmManager.shared.getAll(AuthCodeData.self)
+            .filter {
+                if self.searchKeyword.isEmpty { return true }
+                return $0.name.contains(self.searchKeyword)
+            }
+            .map {
+                let authCode = $0
+                let number = String(format: "%06d", Int.random(in: 0...999_999))
+                authCode.code = number.inserting(separator: " ", every: 3)
+                return authCode
+            }
     }
 }

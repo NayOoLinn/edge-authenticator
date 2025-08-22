@@ -14,7 +14,7 @@ final class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimato
         let view = NVActivityIndicatorView(
             frame: CGRect(x: 0, y: 0, width: 20, height: 20),
             type: .ballClipRotateMultiple,
-            color: Color.yellowBold
+            color: Color.primaryBold
         )
         return view
     }()

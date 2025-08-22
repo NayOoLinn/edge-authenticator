@@ -20,7 +20,7 @@ struct RealmManager {
     }
     
     static let shared = RealmManager()
-    private let realm: Realm
+    let realm: Realm
     
     private init() {
         do {
@@ -80,3 +80,4 @@ struct RealmManager {
     }
     
 }
+

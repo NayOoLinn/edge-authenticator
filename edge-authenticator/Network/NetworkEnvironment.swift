@@ -13,9 +13,9 @@ enum NetworkEnvironment {
     var urlEnvironment: URLEnvironment {
         switch self {
         case .uat:
-            return URLEnvironment(baseUrl: Environment.baseUrl, version: "v1")
+            return URLEnvironment(baseUrl: KeychainData.baseUrl?.decryptWithAES() ?? "", version: "v1")
         case .production:
-            return URLEnvironment(baseUrl: Environment.baseUrl, version: "v1")
+            return URLEnvironment(baseUrl: KeychainData.baseUrl?.decryptWithAES() ?? "", version: "v1")
         }
     }
 

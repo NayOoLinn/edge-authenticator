@@ -19,14 +19,6 @@ public class AddAccountOptionView: UIView {
         setupView()
     }
     
-    public override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-    }
-    
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     // MAKR: Setup
     fileprivate func setupView() {
         guard let view = loadViewFromNib() else { return }

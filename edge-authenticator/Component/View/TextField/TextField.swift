@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxCocoa
 
 public class TextField: UIView {
 
@@ -282,6 +283,10 @@ extension TextField {
 // MARK: - Reactive
 public extension Reactive where Base: TextField {
 
+    var text: ControlProperty<String?> {
+        return base.textField.rx.text
+    }
+    
     var textChanged: Observable<String> {
         return base.onTextChanged.map { $0 }
     }

@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,7 +27,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tr5-wA-DbR" customClass="HomeHeaderView" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="surface"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="108" id="EAf-1u-4mR"/>
                                 </constraints>
@@ -67,19 +66,19 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Jmi-gK-kZn">
                                 <rect key="frame" x="0.0" y="168" width="393" height="684"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAf-mx-uSo">
                                 <rect key="frame" x="321" y="712" width="56" height="56"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="silver"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="6fk-0O-ZQg"/>
                                     <constraint firstAttribute="height" constant="56" id="BVI-sV-WrY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="48"/>
-                                <color key="tintColor" name="txtColor"/>
+                                <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="48"/>
+                                <color key="tintColor" name="primaryBold"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="icon-plus">
+                                <state key="normal" title="+">
                                     <color key="titleColor" name="txtColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -93,7 +92,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="surface"/>
                         <constraints>
                             <constraint firstItem="Jmi-gK-kZn" firstAttribute="top" secondItem="FXZ-Wi-hiW" secondAttribute="bottom" id="0F1-NL-ZaD"/>
                             <constraint firstItem="Tr5-wA-DbR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="1O4-Dh-hTe"/>
@@ -113,6 +112,7 @@
                         <outlet property="authTableView" destination="Jmi-gK-kZn" id="b7F-tl-ddG"/>
                         <outlet property="headerView" destination="Tr5-wA-DbR" id="EK9-9D-kOA"/>
                         <outlet property="plusButton" destination="oAf-mx-uSo" id="4gC-gO-DHl"/>
+                        <outlet property="searchTextField" destination="FXZ-Wi-hiW" id="Yeg-mX-N5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -197,7 +197,7 @@
                                     </stackView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="ha4-L3-Jbl"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="surface"/>
                                 <constraints>
                                     <constraint firstItem="TmU-uC-JHY" firstAttribute="leading" secondItem="msA-eh-obl" secondAttribute="leading" constant="20" id="2gJ-XK-vmW"/>
                                     <constraint firstItem="TmU-uC-JHY" firstAttribute="top" secondItem="ha4-L3-Jbl" secondAttribute="top" constant="16" id="HxW-lK-YJI"/>
@@ -340,7 +340,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyB-Ms-byP" customClass="NavBar" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="surface"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="108" id="ZUS-Xb-cBl"/>
                                 </constraints>
@@ -439,7 +439,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut5-1L-Hvz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut5-1L-Hvz" customClass="AppButton" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="20" y="720" width="353" height="48"/>
                                 <color key="backgroundColor" name="primaryBold"/>
                                 <constraints>
@@ -457,11 +457,17 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowAlpha">
                                         <real key="value" value="0.20000000000000001"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBgColor">
+                                        <color key="value" name="primaryBold"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="disableBgColor">
+                                        <color key="value" name="disable"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="syh-Wh-YjB"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="surface"/>
                         <constraints>
                             <constraint firstItem="d3n-Mm-TDt" firstAttribute="leading" secondItem="syh-Wh-YjB" secondAttribute="leading" constant="20" id="0zQ-ue-uAe"/>
                             <constraint firstItem="syh-Wh-YjB" firstAttribute="trailing" secondItem="nyB-Ms-byP" secondAttribute="trailing" id="4Rv-7v-whx"/>
@@ -494,7 +500,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZT-4P-5ll" customClass="NavBar" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="surface"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="108" id="nFX-Ec-20f"/>
                                 </constraints>
@@ -516,7 +522,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fc4-hZ-nHc" customClass="AEOTPTextField" customModule="edge_authenticator" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="0.0" width="321" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="7Yy-TO-MqK"/>
                                                 </constraints>
@@ -532,7 +538,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8te-Id-jcs">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8te-Id-jcs" customClass="AppButton" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="20" y="239.66666666666666" width="70" height="31.999999999999972"/>
                                 <color key="backgroundColor" name="primaryBold"/>
                                 <constraints>
@@ -551,9 +557,15 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowAlpha">
                                         <real key="value" value="0.20000000000000001"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBgColor">
+                                        <color key="value" name="primaryBold"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="disableBgColor">
+                                        <color key="value" name="disable"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6c-15-vhD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6c-15-vhD" customClass="AppButton" customModule="edge_authenticator" customModuleProvider="target">
                                 <rect key="frame" x="20" y="720" width="353" height="48"/>
                                 <color key="backgroundColor" name="primaryBold"/>
                                 <constraints>
@@ -571,11 +583,17 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowAlpha">
                                         <real key="value" value="0.20000000000000001"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBgColor">
+                                        <color key="value" name="primaryBold"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="disableBgColor">
+                                        <color key="value" name="disable"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tzp-zt-VYf"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="surface"/>
                         <constraints>
                             <constraint firstItem="8te-Id-jcs" firstAttribute="leading" secondItem="tzp-zt-VYf" secondAttribute="leading" constant="20" id="CbJ-9t-JWx"/>
                             <constraint firstItem="tzp-zt-VYf" firstAttribute="trailing" secondItem="GZT-4P-5ll" secondAttribute="trailing" id="D1i-JZ-Dsb"/>
@@ -608,17 +626,22 @@
         <image name="icon-help-circle" width="24" height="24"/>
         <image name="icon-link" width="24" height="24"/>
         <image name="icon-photo" width="24" height="24"/>
-        <image name="icon-plus" width="24" height="24"/>
         <image name="icon-search" width="24" height="24"/>
         <image name="icon-tag" width="24" height="24"/>
+        <namedColor name="disable">
+            <color red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryBold">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10196078431372549" green="0.45098039215686275" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="silver">
-            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="surface">
+            <color red="0.94117647058823528" green="0.95686274509803926" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="txtColor">
-            <color red="0.12941176470588237" green="0.40784313725490196" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10196078431372549" green="0.45098039215686275" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="txtDim">
             <color red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -629,8 +652,5 @@
         <namedColor name="txtTitle">
             <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

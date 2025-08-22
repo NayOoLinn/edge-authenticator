@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeHeaderView" customModule="edge_authenticator" customModuleProvider="target">
             <connections>
@@ -58,7 +63,7 @@
                         </stackView>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="MaQ-5b-fWo"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="surface"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="zzT-HW-S2D" secondAttribute="trailing" constant="16" id="18S-wq-peM"/>
                         <constraint firstItem="zzT-HW-S2D" firstAttribute="top" secondItem="MaQ-5b-fWo" secondAttribute="top" id="Y9E-mG-Z7u"/>
@@ -82,7 +87,10 @@
     <resources>
         <image name="icon-menu" width="24" height="24"/>
         <namedColor name="primaryBold">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10196078431372549" green="0.45098039215686275" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="surface">
+            <color red="0.94117647058823528" green="0.95686274509803926" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="txtParagraph">
             <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

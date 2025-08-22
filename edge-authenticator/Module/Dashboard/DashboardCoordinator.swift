@@ -7,7 +7,7 @@ class DashboardCoordinator: Coordinator {
         case home
         case drawer
         case qrScan
-        case bindingKey(String?)
+        case bindingKey(AuthCodeData?)
         case otpVerify
     }
 
@@ -28,8 +28,8 @@ class DashboardCoordinator: Coordinator {
             routeToDrawer()
         case .qrScan:
             routeToQRScan()
-        case .bindingKey(let key):
-            routeToBindingKey(key: key)
+        case .bindingKey(let data):
+            routeToBindingKey(data)
         case .otpVerify:
             routeToOtpVerify()
         }
@@ -50,7 +50,7 @@ class DashboardCoordinator: Coordinator {
         }).disposed(by: disposeBag)
         
         viewModel.routeToBindingKey.subscribe(onNext: {
-            self.navigate(to: .bindingKey(nil))
+            self.navigate(to: .bindingKey($0))
         }).disposed(by: disposeBag)
 
         start(with: viewController)
@@ -79,16 +79,12 @@ class DashboardCoordinator: Coordinator {
         push(viewController: viewController)
     }
     
-    private func routeToBindingKey(key: String?) {
+    private func routeToBindingKey(_ data: AuthCodeData?) {
 
-        let viewModel = BindingKeyViewModel(key: key)
+        let viewModel = BindingKeyViewModel(data: data)
         
         let viewController = BindingKeyViewController.instantiate(from: storyboard)
         viewController.viewModel = viewModel
-        
-        viewModel.routeToOTPVerify.subscribe(onNext: {
-            self.navigate(to: .otpVerify)
-        }).disposed(by: disposeBag)
 
         push(viewController: viewController)
     }

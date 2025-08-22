@@ -55,7 +55,7 @@ class QrScanViewController: BaseViewController, ViewController {
         
         // Scanner
         scanner.rx.result.subscribe(onNext: { [weak self] in
-            self?.viewModel.routeToBindingKey.onNext($0)
+            self?.viewModel.routeToBindingKey.onNext(AuthCodeData(name: "", key: $0))
         }).disposed(by: disposeBag)
         
         Observable.merge(scanner.rx.permissionDenied, scanner.rx.deviceNotSupported)
@@ -63,14 +63,13 @@ class QrScanViewController: BaseViewController, ViewController {
                 self?.popThis()
             }).disposed(by: disposeBag)
         
-        
         // Photo Library
         photoButton.rx.tap.subscribe(onNext: { [weak self] in
             self?.photoLibrary.pickPhoto()
         }).disposed(by: disposeBag)
         
         photoLibrary.rx.result.subscribe(onNext: { [weak self] in
-            self?.viewModel.routeToBindingKey.onNext($0)
+            self?.viewModel.routeToBindingKey.onNext(AuthCodeData(name: "", key: $0))
         }).disposed(by: disposeBag)
         
         photoLibrary.rx.error.subscribe(onNext: { [weak self] in

@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch
+        prepareKeys()
         configureAppStartService()
         configureURLEnvironment()
         
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = window
             appCoordinator = AppCoordinator.start(window: window)
         }
+        
         return true
     }
 
@@ -40,6 +42,19 @@ extension AppDelegate {
     }
 
     func configureURLEnvironment() {
-//        Network.shared.configure(environment: .uat)
+        Network.shared.configure(environment: .uat)
+    }
+    
+    func prepareKeys() {
+        guard let version = Int(KeychainData.securityKeyVersion ?? "0"),
+        version < SecurityKey.version else {
+            return
+        }
+        
+        KeychainData.baseUrl = SecurityKey.baseUrl
+        KeychainData.clientId = SecurityKey.clientId
+        KeychainData.clientSecret = SecurityKey.clientSecret
+        KeychainData.publicKey = SecurityKey.publicKey
+        KeychainData.securityKeyVersion = String(SecurityKey.version)
     }
 }

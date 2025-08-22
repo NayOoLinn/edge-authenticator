@@ -36,7 +36,10 @@ public struct KeychainContext {
                     kSecClass as String: kSecClassGenericPassword,
                     kSecAttrAccount as String: storageKey.key
                 ]
-                let attributes: [String: Any] = [kSecValueData as String: data]
+                let attributes: [String: Any] = [
+                    kSecValueData as String: data,
+                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+                ]
 
                 let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
                 if status == noErr {
@@ -49,7 +52,8 @@ public struct KeychainContext {
                     kSecClass as String: kSecClassGenericPassword,
                     kSecAttrService as String: service,
                     kSecAttrAccount as String: storageKey.key,
-                    kSecValueData as String: data
+                    kSecValueData as String: data,
+                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
                 ]
 
                 let status = SecItemAdd(query as CFDictionary, nil)
@@ -68,7 +72,7 @@ public struct KeychainContext {
             kSecAttrAccount as String: storageKey.key,
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnAttributes as String: true,
-            kSecReturnData as String: true,
+            kSecReturnData as String: true
         ]
 
         var item: CFTypeRef?

@@ -47,10 +47,11 @@ public class AEOTPTextField: UITextField {
     }()
     
     fileprivate var otpEnterFinish = PublishSubject<String>()
+    fileprivate var textChanged = PublishSubject<String>()
     
     private let cursorView: UIView = {
         let view = UIView()
-        view.backgroundColor = Color.blueBold
+        view.backgroundColor = Color.primaryBold
         view.layer.cornerRadius = 1
         view.isHidden = true
         return view
@@ -204,6 +205,8 @@ private extension AEOTPTextField {
         if text.count == digitLabels.count {
             otpDelegate?.didUserFinishEnter(the: text)
             otpEnterFinish.onNext(text)
+        } else {
+            textChanged.onNext(text)
         }
     }
     
@@ -233,5 +236,9 @@ extension AEOTPTextField: AEOTPTextFieldImplementationProtocol {
 extension Reactive where Base: AEOTPTextField {
     var userFinishEnter: Observable<String> {
         base.otpEnterFinish
+    }
+    
+    var textChanged: Observable<String> {
+        base.textChanged
     }
 }

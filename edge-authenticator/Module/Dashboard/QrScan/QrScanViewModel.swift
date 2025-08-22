@@ -14,7 +14,7 @@ class QrScanViewModel: BaseViewModel, ViewModel {
     }
     
     //Coordinator Output
-    let routeToBindingKey = PublishSubject<String>()
+    let routeToBindingKey = PublishSubject<AuthCodeData>()
 
     func transform(input: Input) -> Output {
 
