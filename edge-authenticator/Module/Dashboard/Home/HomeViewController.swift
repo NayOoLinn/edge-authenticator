@@ -40,6 +40,7 @@ class HomeViewController: BaseViewController, ViewController {
     }
 
     override func setUpViews() {
+        authTableView.preventScreenshot()
         authTableView.showsVerticalScrollIndicator = false
         authTableView.register(
             nib: AuthCodeTableCell.className,

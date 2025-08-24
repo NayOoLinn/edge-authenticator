@@ -482,6 +482,7 @@
                     </view>
                     <connections>
                         <outlet property="keyTextField" destination="TZz-zt-F1J" id="cVA-K7-u69"/>
+                        <outlet property="mainStackView" destination="d3n-Mm-TDt" id="iDF-rk-igD"/>
                         <outlet property="nameTextField" destination="LPb-tC-CFt" id="ALc-FU-rKL"/>
                         <outlet property="registerButton" destination="ut5-1L-Hvz" id="glq-kv-AbB"/>
                     </connections>
@@ -611,6 +612,7 @@
                     <connections>
                         <outlet property="otpTextField" destination="Fc4-hZ-nHc" id="5M0-Ki-YIi"/>
                         <outlet property="resendButton" destination="8te-Id-jcs" id="Sxx-t9-bt3"/>
+                        <outlet property="stackView" destination="i8m-NS-WDE" id="S4l-oU-ica"/>
                         <outlet property="submitButton" destination="U6c-15-vhD" id="iYS-U8-6cR"/>
                     </connections>
                 </viewController>

@@ -31,6 +31,7 @@ class QrScanViewController: BaseViewController, ViewController {
     }
     
     override func setUpViews() {
+        cameraView.preventScreenshot()
         torchButton.setImage(UIImage(named: "icon-bolt-off"), for: .normal)
         torchButton.setImage(UIImage(named: "icon-bolt-filled"), for: .selected)
     }

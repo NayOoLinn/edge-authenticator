@@ -155,4 +155,8 @@ public extension UIView {
             self?.superview?.layoutIfNeeded()
         })
     }
+    
+    func preventScreenshot() {
+        SecureView.preventScreenshot(for: self)
+    }
 }

@@ -3,6 +3,7 @@ import UIKit
 
 class OtpVerifyViewController: BaseViewController, ViewController {
     
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var otpTextField: AEOTPTextField!
     @IBOutlet weak var resendButton: AppButton!
     @IBOutlet weak var submitButton: AppButton!
@@ -19,6 +20,7 @@ class OtpVerifyViewController: BaseViewController, ViewController {
 
     override func setUpViews() {
         setUpOTPField()
+        stackView.preventScreenshot()
         resendButton.isEnabled = false
         submitButton.isEnabled = false
     }

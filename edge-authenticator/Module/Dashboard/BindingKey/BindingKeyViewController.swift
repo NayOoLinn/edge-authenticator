@@ -3,6 +3,7 @@ import UIKit
 
 class BindingKeyViewController: BaseViewController, ViewController {
     
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var keyTextField: TextField!
     @IBOutlet weak var registerButton: AppButton!
@@ -17,6 +18,8 @@ class BindingKeyViewController: BaseViewController, ViewController {
 
     override func setUpViews() {
         registerButton.isEnabled = false
+        
+        mainStackView.preventScreenshot()
     }
 
     override func bindActions() {
